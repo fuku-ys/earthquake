@@ -10,8 +10,7 @@ cp -u $EQ_HOME/bin/earthquake-inspector.jar $EQ_MATERIALS_DIR/
 if [ ! -e $EQ_MATERIALS_DIR/zookeeper ];
 then
     git clone https://github.com/apache/zookeeper.git $EQ_MATERIALS_DIR/zookeeper
-    echo `pwd`
-    pushd zookeeper
+    pushd $EQ_MATERIALS_DIR/zookeeper
     ant
     popd
 fi
@@ -30,6 +29,6 @@ cp -R $EQ_MATERIALS_DIR/quorumconf.template $EQ_WORKING_DIR/quorumconf
 sleep 1
 bash $EQ_MATERIALS_DIR/quorumStart.sh
 sleep 5
-bash $EQ_MATERIALS_DIR/concurrentWrite.sh &
-bash $EQ_MATERIALS_DIR/addNode.sh
+#bash $EQ_MATERIALS_DIR/concurrentWrite.sh
+#bash $EQ_MATERIALS_DIR/addNode.sh
 sleep 1
