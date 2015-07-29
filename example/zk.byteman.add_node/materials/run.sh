@@ -29,7 +29,7 @@ cp -R $EQ_MATERIALS_DIR/quorumconf.template $EQ_WORKING_DIR/quorumconf
 
 sleep 1
 bash $EQ_MATERIALS_DIR/quorumStart.sh
-sleep 3
+sleep 5
 bash $EQ_MATERIALS_DIR/concurrentWrite.sh &
 bash $EQ_MATERIALS_DIR/addNode.sh
 sleep 1

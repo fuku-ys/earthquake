@@ -6,7 +6,7 @@ bin/earthquake run /tmp/eq_test
 # loop
 for i in `seq 1 1000`; do bin/earthquake run /tmp/eq_test; done
 
-bin/earthquake tools summry /tmp/eq_test
+bin/earthquake tools summary /tmp/eq_test
 bin/earthquake tools visualize --mode gnuplot /tmp/eq_test
 
 

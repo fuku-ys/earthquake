@@ -25,7 +25,7 @@ public class CreateZnodeZkCli {
             ZooKeeper zk = new ZooKeeper(args[0], 30000, new MyWatcher());
 
             String testdata = "fubar";
-            for (int i = 0; i < 1; i++) {
+            for (int i = 0; i < 2; i++) {
                 zk.create("/test-", testdata.getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT_SEQUENTIAL);
             }
         } catch (IOException e) {
