@@ -34,18 +34,9 @@ sleep 2
 bash $EQ_MATERIALS_DIR/quorumStart.sh
 sleep 5
 
-#result=1
-#count=0
-#while [ ${result} -eq 1 -a ${count} -lt 30 ]
-#do
-#    python ${EQ_MATERIALS_DIR}/check-fle-states.py 2181 2182 2183 && result=0
-#    (( count++ ))
-#    sleep 1
-#done
-
-#bash $EQ_MATERIALS_DIR/check-fle-states.sh 2181 2182 2183
+# validate amsamble
+bash $EQ_MATERIALS_DIR/check-fle-states.sh 2181
 
 bash $EQ_MATERIALS_DIR/concurrentWrite.sh &
-#bash $EQ_MATERIALS_DIR/quorumStart-4-5.sh
 bash $EQ_MATERIALS_DIR/addNode.sh
 sleep 5

@@ -14,7 +14,7 @@ do
     sleep 1
 done
 
-if [ if -eq 1 ]
+if [ ${result} -eq 1 ]
 then
     exit 1
 else
