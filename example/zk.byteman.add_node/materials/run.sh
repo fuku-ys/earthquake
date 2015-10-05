@@ -1,7 +1,7 @@
 #! /bin/bash
 set -x
 
-export EQ_HOME=/home/fukuda/earthquake
+export EQ_HOME=$HOME/eq_test/earthquake
 
 # copy earthquake-inspector.jar
 cp -u $EQ_HOME/bin/earthquake-inspector.jar $EQ_MATERIALS_DIR/
@@ -28,7 +28,7 @@ export AGENT_CP=$EQ_MATERIALS_DIR/earthquake-inspector.jar
 
 cp -R $EQ_MATERIALS_DIR/quorumconf.template $EQ_WORKING_DIR/quorumconf
 
-sleep 1
+sleep 2
 bash $EQ_MATERIALS_DIR/quorumStart.sh
 sleep 5
 bash $EQ_MATERIALS_DIR/concurrentWrite.sh &
