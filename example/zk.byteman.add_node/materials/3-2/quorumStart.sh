@@ -1,6 +1,6 @@
 #! /bin/bash
 
-for i in `seq 1 3`;
+for i in `seq 1 5`;
 do
     DIR=$EQ_WORKING_DIR/zookeeper$i/
     if [ ! -d $DIR ];
