@@ -62,21 +62,21 @@ func recordJSONToFile(v interface{}, fileName string) error {
 	return ioutil.WriteFile(fileName, js, 0644)
 }
 
-func recordAction(i int, act *Action, dir string) {
-	actJSON := act.ToJSONMap()
-	actJSONName := path.Join(dir, fmt.Sprintf("%d.action.json", i))
-	if err := recordJSONToFile(actJSON, actJSONName); err != nil {
-		panic(err)
-	}
-
-	if act.Evt != nil {
-		evtJSON := act.Evt.ToJSONMap()
-		evtJSONName := path.Join(dir, fmt.Sprintf("%d.event.json", i))
-		if err := recordJSONToFile(evtJSON, evtJSONName); err != nil {
-			panic(err)
-		}
-	}
-}
+//func recordAction(i int, act *Action, dir string) {
+//	actJSON := act.ToJSONMap()
+//	actJSONName := path.Join(dir, fmt.Sprintf("%d.action.json", i))
+//	if err := recordJSONToFile(actJSON, actJSONName); err != nil {
+//		panic(err)
+//	}
+//
+//	if act.Evt != nil {
+//		evtJSON := act.Evt.ToJSONMap()
+//		evtJSONName := path.Join(dir, fmt.Sprintf("%d.event.json", i))
+//		if err := recordJSONToFile(evtJSON, evtJSONName); err != nil {
+//			panic(err)
+//		}
+//	}
+//}
 
 
 func (n *Naive) RecordNewTrace(newTrace *SingleTrace) {
@@ -107,7 +107,7 @@ func (n *Naive) RecordNewTrace(newTrace *SingleTrace) {
 		os.Exit(1)
 	}
 	for i, act := range newTrace.ActionSequence {
-		recordAction(i, &act, actionTraceDir)
+//		recordAction(i, &act, actionTraceDir)
 	}
 }
 
