@@ -106,9 +106,9 @@ func (n *Naive) RecordNewTrace(newTrace *SingleTrace) {
 		Log("%s", err)
 		os.Exit(1)
 	}
-	for i, act := range newTrace.ActionSequence {
+//	for i, act := range newTrace.ActionSequence {
 //		recordAction(i, &act, actionTraceDir)
-	}
+//	}
 }
 
 func (n *Naive) readSearchModeInfo() *searchModeInfo {
