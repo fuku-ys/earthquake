@@ -8,6 +8,9 @@ export EQ_HOME=$HOME/eq_test/earthquake
 # copy earthquake-inspector.jar
 cp -u $EQ_HOME/bin/earthquake-inspector.jar $EQ_MATERIALS_DIR/
 
+# copy earthquake-analyzer.jar
+cp -u $EQ_HOME/bin/earthquake-analyzer.jar $EQ_MATERIALS_DIR/
+
 # download zookeeper to this dir
 if [ ! -e $EQ_MATERIALS_DIR/zookeeper ];
 then
