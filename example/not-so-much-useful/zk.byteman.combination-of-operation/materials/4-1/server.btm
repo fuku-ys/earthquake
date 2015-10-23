@@ -1,0 +1,99 @@
+RULE quorum packet receive in Follower
+CLASS Learner
+METHOD readPacket
+HELPER net.osrg.earthquake.PBEQHelper
+BIND argMap = new java.util.HashMap()
+AT EXIT
+IF $# == 1
+DO
+eventFuncReturn("Learner.readPacket", "org.apache.zookeeper.server.quorum.LearnerHandler");
+ENDRULE
+
+RULE quorum packet receive in Leader
+CLASS BinaryInputArchive
+METHOD readRecord
+HELPER net.osrg.earthquake.PBEQHelper
+BIND argMap = new java.util.HashMap()
+AT EXIT
+IF $# == 2
+DO
+eventFuncReturn("BinaryInputArchive.readRecord", "org.apache.zookeeper.server.quorum.LearnerHandler");
+ENDRULE
+
+RULE quorum packet send in Follower
+CLASS Learner
+METHOD writePacket
+HELPER net.osrg.earthquake.PBEQHelper
+BIND argMap = new java.util.HashMap()
+AT ENTRY
+IF $# == 2
+DO
+eventFuncReturn("Learner.writePacket", "org.apache.zookeeper.server.quorum.LearnerHandler");
+ENDRULE
+
+RULE quorum packet send in Leader
+CLASS LearnerHandler
+METHOD queuePacket
+HELPER net.osrg.earthquake.PBEQHelper
+BIND argMap = new java.util.HashMap()
+AT ENTRY
+IF $# == 1
+DO
+eventFuncReturn("LearnerHandler.queuePacket", "org.apache.zookeeper.server.quorum.LearnerHandler");
+ENDRULE
+
+RULE Thread to receive messages
+CLASS ^QuorumCnxManager
+METHOD RecvWorker
+HELPER net.osrg.earthquake.PBEQHelper
+BIND argMap = new java.util.HashMap()
+AT ENTRY
+IF $# == 3
+DO
+eventFuncReturn("RecvWorker.RecvWorker", "org.apache.zookeeper.server.quorum.QuorumCnxManager.RecvWorker");
+ENDRULE
+
+RULE Thread to send messages
+CLASS ^QuorumCnxManager
+METHOD SendWorker
+HELPER net.osrg.earthquake.PBEQHelper
+BIND argMap = new java.util.HashMap()
+AT ENTRY
+IF $# == 2
+DO
+eventFuncReturn("SendWorker.SendWorker", "org.apache.zookeeper.server.quorum.QuorumCnxManager.SendWorker");
+ENDRULE
+
+RULE Thread to listen on some port
+CLASS ^QuorumCnxManager
+METHOD Listener
+HELPER net.osrg.earthquake.PBEQHelper
+BIND argMap = new java.util.HashMap()
+AT ENTRY
+IF $# == 0
+DO
+eventFuncReturn("Listener.Listener", "org.apache.zookeeper.server.quorum.QuorumCnxManager.Listener");
+ENDRULE
+
+RULE Receives messages from instance of QuorumCnxManager
+CLASS ^FastLeaderElection
+METHOD WorkerReceiver
+HELPER net.osrg.earthquake.PBEQHelper
+BIND argMap = new java.util.HashMap()
+AT ENTRY
+IF $# == 1
+DO
+eventFuncReturn("WorkerReceiver.WorkerReceiver", "org.apache.zookeeper.server.quorum.FastLeaderElection.Messenger.WorkerReceiver");
+ENDRULE
+
+RULE AcceptThread and SelectorThread
+CLASS ^NIOServerCnxnFactory
+METHOD AcceptThread
+HELPER net.osrg.earthquake.PBEQHelper
+BIND argMap = new java.util.HashMap()
+AT ENTRY
+IF $# == 3
+DO
+eventFuncReturn("AcceptThread.AcceptThread", "org.apache.zookeeper.server.NIOServerCnxnFactory");
+ENDRULE
+
